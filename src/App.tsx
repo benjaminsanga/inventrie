@@ -13,24 +13,27 @@ function App() {
 
   // hook to sync locally store items with redux store
   useEffect(() => {
-    for (let storageItemKey in localStorage) { // get each item key in localstorage
-
+    for (let storageItemKey in localStorage) {
       // use the item key to check for valid date
-      // using the regex for numbers technique
       if (new Date(storageItemKey).toString().match(/[0-9]/g) === null) continue
 
-      // get item object from the stored value
-      let item: { item: string, quantity: number, date: string } = JSON.parse(localStorage.getItem(storageItemKey) as string)
-      
-      // add item to store using dispatch and additem action
+      const value = localStorage.getItem(storageItemKey)
+      if (!value) continue
+      let item: { item: string, quantity: number, date: string } | null = null
+      try {
+        item = JSON.parse(value)
+      } catch (e) {
+        // skip invalid JSON
+        continue
+      }
+      // check that item has the expected shape
+      if (!item || typeof item.item !== 'string' || typeof item.quantity !== 'number' || typeof item.date !== 'string') continue
       dispatch(addItem({
         item: item.item,
         quantity: item.quantity,
         date: item.date
       }))
-      
     }
-  
   }, [])
 
   const handleChangeItem = (e: React.ChangeEvent<HTMLInputElement>) => {

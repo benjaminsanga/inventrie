@@ -1,68 +1,74 @@
-:root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  padding: 0;
+  box-sizing: border-box;
+  max-width: 100%;
+  /* font-family: 'Courier Prime', monospace; */  
+  /* font-family: 'Space Mono', monospace; */
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+h1, h2, h3, h4, h5, h6 { font-family: 'Source Sans Pro', sans-serif; }
+
+p, input, button {
+  font-family: 'PT Mono', monospace;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+span {
+  font-family: 'IBM Plex Mono', monospace;
+  display: block;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
+div.App {
+  padding: 40px;
+  margin: 10px;
+  box-sizing: border-box;
+}
+
+form {
+  padding: 10px 0;
+}
+
+input {
+  width: 80%;
+}
+
+.quantity {width: 47%}
+
+form input, button {
+  font-size: 0.95rem;
+  padding: 10px 20px;
+  margin: 7px 10px 5px 0;
+  border: .5px solid #000;
+}
+
+b {
+  font-size: 0.85rem;
+}
+
+footer {
+  position: fixed;
+  bottom: 10px;    
+}
+
+footer a {
+  text-decoration: none;
+  color: darkcyan;
+}
+
+@media only screen and (max-width: 600px) {
+  div.App {
+    padding: 20px;
+    margin: 5px;
+    box-sizing: border-box;
   }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
+  input {
+    width: 100%;
   }
 }
+
