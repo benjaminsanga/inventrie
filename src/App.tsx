@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { addItem, removeItem } from './features/items-slice'
+import { addItem, removeItem, clearItems } from './features/items-slice'
 import { useAppDispatch } from './features/hooks'
 import './App.css';
 import EntryForm from './components/EntryForm';
@@ -13,6 +13,11 @@ function App() {
 
   // hook to sync locally store items with redux store
   useEffect(() => {
+    console.log('useEffect running'); // Add this debug log
+    
+    // Clear any existing items first to prevent duplicates
+    dispatch(clearItems());
+    
     for (let storageItemKey in localStorage) {
       // use the item key to check for valid date
       if (new Date(storageItemKey).toString().match(/[0-9]/g) === null) continue
@@ -73,19 +78,21 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <h1>Inventory 🥕 </h1>
+        <h1>Inventrie</h1>
       </header>
       <main>
-        <EntryForm item={item} 
-        quantity={quantity} 
-        handleChangeItem={handleChangeItem} 
-        handleChangeQuantity={handleChangeQuantity} 
-        handleAddToStore={handleAddToStore} />
+        <EntryForm 
+          item={item} 
+          quantity={quantity} 
+          handleChangeItem={handleChangeItem} 
+          handleChangeQuantity={handleChangeQuantity} 
+          handleAddToStore={handleAddToStore} 
+        />
 
         <ItemsList handleRemoveItem={handleRemoveItem} />
       </main>
       <footer>
-        <p>Crafted by <a href='https://twitter.com/yourfavben' target={'_blank'}>@yourfavben 😎  </a></p>
+        <p>X: <a href='https://twitter.com/graybloc' target={'_blank'}>@graybloc 😎  </a></p>
       </footer>
     </div>
   );

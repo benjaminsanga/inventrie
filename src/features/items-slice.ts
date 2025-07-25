@@ -20,10 +20,13 @@ export const itemSlice = createSlice({
         removeItem(state, action: PayloadAction<number>) {
             localStorage.removeItem(state.items[action.payload].date)
             state.items = [...state.items.filter((_, i) => i !== action.payload)]
+        },
+        clearItems(state) {
+            state.items = []
         }
     }
 })
 
-export const { addItem, removeItem } = itemSlice.actions
+export const { addItem, removeItem, clearItems } = itemSlice.actions
 
 export default itemSlice.reducer
