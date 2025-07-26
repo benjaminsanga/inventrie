@@ -19,8 +19,10 @@ const ItemsList = ({ handleRemoveItem }: ItemsListType) => {
                                 <strong style={{ fontSize: '18px' }}>#{state.items.length - index} - {item.item}</strong>
                                 <i>{item.date}</i>
                             </p>
-                            <span>Quantity: {item.quantity}</span>
-                            <button onClick={() => handleRemoveItem(index)} className='small-box danger'>Remove ❎ </button>
+                            <section className='item-quantity-delete'>
+                                <span>Quantity: {item.quantity}</span>
+                                <button onClick={() => handleRemoveItem(index)} className='small-box danger'>Remove</button>
+                            </section>
                             <p>-------------------------------------------</p>
                         </section>
                     )).reverse()
