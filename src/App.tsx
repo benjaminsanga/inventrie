@@ -4,6 +4,7 @@ import { useAppDispatch } from './features/hooks'
 import './App.css';
 import EntryForm from './components/EntryForm';
 import ItemsList from './components/ItemsList';
+import LinkedIn from './assets/images/LinkedIn_logo.png'
 
 function App() {
 
@@ -95,7 +96,7 @@ function App() {
       </main>
       <footer>
         <div>
-          <img src="./public/LinkedIn_logo.png" alt="LinkedIn" className='img-logo' />
+          <img src={LinkedIn} alt="LinkedIn" className='img-logo' />
           <a href='https://www.linkedin.com/in/benjamin-sanga/' target={'_blank'}>Benjamin Sanga</a>
         </div>
       </footer>
