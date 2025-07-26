@@ -8,13 +8,12 @@ import ItemsList from './components/ItemsList';
 function App() {
 
   const [item, setItem] = useState('') // form item hook 
+  const [wordCount, setWordCount] = useState(0)
   const [quantity, setQuantity] = useState(0) // form item quantity hook
   const dispatch = useAppDispatch() // hook for dispatching actions to store
 
   // hook to sync locally store items with redux store
-  useEffect(() => {
-    console.log('useEffect running'); // Add this debug log
-    
+  useEffect(() => {    
     // Clear any existing items first to prevent duplicates
     dispatch(clearItems());
     
@@ -43,7 +42,8 @@ function App() {
 
   const handleChangeItem = (e: React.ChangeEvent<HTMLInputElement>) => {
     // check that field is not empty
-    if (e.currentTarget.value.length < 0) return
+    if (e.currentTarget.value.length < 0 || e.currentTarget.value.length > 45) return
+    setWordCount(e.target.value.length)
     setItem(e.target.value)
   }
 
@@ -65,6 +65,7 @@ function App() {
     }) )
 
     setItem('')
+    setWordCount(0)
     setQuantity(0)
 
   }
@@ -83,6 +84,7 @@ function App() {
       <main>
         <EntryForm 
           item={item} 
+          wordCount={wordCount}
           quantity={quantity} 
           handleChangeItem={handleChangeItem} 
           handleChangeQuantity={handleChangeQuantity} 
@@ -92,7 +94,10 @@ function App() {
         <ItemsList handleRemoveItem={handleRemoveItem} />
       </main>
       <footer>
-        <p>X: <a href='https://twitter.com/graybloc' target={'_blank'}>@graybloc 😎  </a></p>
+        <div>
+          <img src="./src/assets/LinkedIn_logo.png" alt="LinkedIn" className='img-logo' />
+          <a href='https://www.linkedin.com/in/benjamin-sanga/' target={'_blank'}>Benjamin Sanga</a>
+        </div>
       </footer>
     </div>
   );

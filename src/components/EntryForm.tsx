@@ -3,13 +3,14 @@ import { useAppSelector } from '../features/hooks'
 
 interface EntryFormType {
     item: string,
+    wordCount: number,
     quantity: number,
     handleChangeItem: (e: React.ChangeEvent<HTMLInputElement>) => void,
     handleChangeQuantity: (count: number) => void,
     handleAddToStore: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void
 }
 
-const EntryForm = ({ item, quantity, handleChangeItem, handleChangeQuantity, handleAddToStore }: EntryFormType) => {
+const EntryForm = ({ item, wordCount, quantity, handleChangeItem, handleChangeQuantity, handleAddToStore }: EntryFormType) => {
 
     const itemInputRef = useRef<HTMLInputElement | null>(null)
     const state = useAppSelector(state => state.itemSlice)
@@ -27,8 +28,9 @@ const EntryForm = ({ item, quantity, handleChangeItem, handleChangeQuantity, han
                         placeholder='Type name of item here...'
                         value={item}
                         autoFocus
-                        ref={itemInputRef} />
-
+                        ref={itemInputRef} 
+                    />
+                    <span>{wordCount}/45</span>
                     <br /><br />
 
                     <span>Quantity</span>
@@ -38,12 +40,12 @@ const EntryForm = ({ item, quantity, handleChangeItem, handleChangeQuantity, han
                         e.preventDefault()
                         if (quantity < 0) return
                         handleChangeQuantity(quantity - 1)
-                    }} className='quantity-btn'><b>🔽 </b></button>
+                    }} className='quantity-btn'><b>-</b></button>
 
                     <button onClick={(e) => {
                         e.preventDefault()
                         handleChangeQuantity(quantity + 1)
-                    }} className='quantity-btn'><b>🔼 </b></button>
+                    }} className='quantity-btn'><b>+</b></button>
                     <br /><br />
                     
                     <button onClick={(e) => handleAddToStore(e)}>Add to List</button>
