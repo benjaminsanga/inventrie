@@ -1,69 +1,109 @@
-# React + TypeScript + Vite
+# Inventrie
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**Inventrie** is a simple, modern inventory and needs-tracking web app built with React, TypeScript, Redux Toolkit, and Vite. It allows you to quickly add, manage, and share lists of items—perfect for shopping, inventory, or any scenario where you need to keep track of things.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
 
-## Expanding the ESLint configuration
+- **Add Items:** Quickly add items with a name and quantity.
+- **Remove Items:** Remove individual items from your list.
+- **Persistent Storage:** Items are saved in your browser's local storage, so your list is preserved between sessions.
+- **Share List:** Share your current list using your device's native share dialog (supported browsers only).
+- **Responsive Design:** Works great on both desktop and mobile devices.
+- **Modern Stack:** Built with React 19, TypeScript, Redux Toolkit, and Vite for fast performance and easy development.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+---
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## Demo
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+> _You can try the app at:_  
+> [https://inventrie.vercel.app//](https://inventrie.vercel.app//)
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+---
+
+## Getting Started
+
+### Prerequisites
+
+- [Node.js](https://nodejs.org/) (v18 or higher recommended)
+- [npm](https://www.npmjs.com/) (comes with Node.js)
+
+### Installation
+
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/your-username/inventrie.git
+   cd inventrie
+   ```
+
+2. **Install dependencies:**
+   ```bash
+   npm install
+   ```
+
+3. **Start the development server:**
+   ```bash
+   npm run dev
+   ```
+
+4. Open [http://localhost:5173](http://localhost:5173) in your browser.
+
+---
+
+## Usage
+
+- **Add an item:**  
+  Enter the item name and quantity, then click "Add to List".
+- **Remove an item:**  
+  Click the "Remove" button next to any item.
+- **Share your list:**  
+  Click the "Share List" button to open your device's share dialog (supported browsers only).
+- **Clear your list:**  
+  (Feature can be added or accessed via browser local storage.)
+
+---
+
+## Tech Stack
+
+- **Frontend:** React, TypeScript
+- **State Management:** Redux Toolkit
+- **Build Tool:** Vite
+- **Styling:** CSS
+
+---
+
+## Project Structure
+
+```
+inventrie/
+  ├── public/                # Static assets
+  ├── src/
+  │   ├── components/        # React components (EntryForm, ItemsList)
+  │   ├── features/          # Redux slices, hooks, and store
+  │   ├── App.tsx            # Main app component
+  │   ├── main.tsx           # Entry point
+  │   └── App.css            # Styles
+  ├── index.html
+  ├── package.json
+  └── vite.config.ts
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Browser Support
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+- The app works in all modern browsers.
+- The "Share List" feature uses the [Web Share API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Share_API), which is supported on most mobile browsers and some desktop browsers (e.g., Chrome, Edge). If sharing is not supported, the app will notify you.
+
+---
+
+## Author
+
+Made by [Benjamin Sanga](https://www.linkedin.com/in/benjamin-sanga/)
+
+---
+
+## License
+
+This project is licensed under the MIT License.

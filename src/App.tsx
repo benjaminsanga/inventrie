@@ -95,7 +95,7 @@ function App() {
       </main>
       <footer>
         <div>
-          <img src="./src/assets/LinkedIn_logo.png" alt="LinkedIn" className='img-logo' />
+          <img src="./public/LinkedIn_logo.png" alt="LinkedIn" className='img-logo' />
           <a href='https://www.linkedin.com/in/benjamin-sanga/' target={'_blank'}>Benjamin Sanga</a>
         </div>
       </footer>

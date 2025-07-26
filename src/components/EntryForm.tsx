@@ -31,7 +31,7 @@ const EntryForm = ({ item, wordCount, quantity, handleChangeItem, handleChangeQu
             `${state.items.length - index} - ${item.item} - ${item.quantity}`
         )).reverse().join('\n');
     
-        const combinedText = `Inventrie List:\n\n${listItems}\n\nCheck out: https://inventrie.com/`;
+        const combinedText = `Inventrie List:\n\n${listItems}\n\nCheck out: https://inventrie.vercel.app//`;
     
         const data = {
             title: 'Inventrie List',
