@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useAppSelector } from '../features/hooks'
 
 interface EntryFormType {
@@ -14,6 +14,40 @@ const EntryForm = ({ item, wordCount, quantity, handleChangeItem, handleChangeQu
 
     const itemInputRef = useRef<HTMLInputElement | null>(null)
     const state = useAppSelector(state => state.itemSlice)
+    const [isSubmitDisabled, setIsSubmitDisabled] = useState(true)
+
+    useEffect(() => {
+        if (item.length > 0 && quantity > 0) {
+            setIsSubmitDisabled(false)
+        } else {
+            setIsSubmitDisabled(true)
+        }
+    }, [item, quantity])
+
+    const handleShareLink = (e: React.MouseEvent<HTMLButtonElement>) => {
+        e.preventDefault();
+    
+        const listItems = state.items.map((item, index) => (
+            `${state.items.length - index} - ${item.item} - ${item.quantity}`
+        )).reverse().join('\n');
+    
+        const combinedText = `Inventrie List:\n\n${listItems}\n\nCheck out: https://inventrie.com/`;
+    
+        const data = {
+            title: 'Inventrie List',
+            text: combinedText,
+        };
+    
+        if (navigator.share) {
+            if (navigator.canShare && !navigator.canShare(data)) {
+                alert('This browser does not support sharing this data.');
+                return;
+            }
+            navigator.share(data);
+        } else {
+            alert('This browser does not support sharing.');
+        }
+    };
 
     return (
         <>
@@ -48,7 +82,17 @@ const EntryForm = ({ item, wordCount, quantity, handleChangeItem, handleChangeQu
                     }} className='quantity-btn'><b>+</b></button>
                     <br /><br />
                     
-                    <button onClick={(e) => handleAddToStore(e)}>Add to List</button>
+                    <section>
+                        <button 
+                            onClick={(e) => handleAddToStore(e)} 
+                            className='submit-btn'
+                            disabled={isSubmitDisabled}
+                        >Add to List</button>
+                        <button 
+                            onClick={(e) => handleShareLink(e)} 
+                            className='share-btn'
+                        >Share List</button>
+                    </section>
                     <p>{state.items.length} items in list</p>
                 </form>
             </div>

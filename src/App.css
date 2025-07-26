@@ -53,6 +53,15 @@ main div {
   margin-right: 5px;
 }
 
+.submit-btn {
+  background-color: #000000;
+  color: #ffffff;
+}
+
+.submit-btn:disabled {
+  color: #666666;
+}
+
 footer {
   position: fixed;
   bottom: 0;
